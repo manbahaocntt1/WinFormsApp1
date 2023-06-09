@@ -121,6 +121,7 @@
             dtgvListUser.Size = new Size(300, 300);
             dtgvListUser.TabIndex = 7;
             dtgvListUser.CellClick += dtgvListUser_CellClick;
+           
             // 
             // btnThoat
             // 

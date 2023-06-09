@@ -68,5 +68,12 @@ namespace WinFormsApp1
             f.Show();
             this.Hide();
         }
+
+        private void btnQLYNhanVien_Click(object sender, EventArgs e)
+        {
+            FormEmployee f = new FormEmployee();
+            f.ShowDialog();
+            
+        }
     }
 }

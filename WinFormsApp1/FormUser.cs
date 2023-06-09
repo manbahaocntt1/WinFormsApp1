@@ -12,7 +12,7 @@ namespace WinFormsApp1
 {
     public partial class FormUser : Form
     {
-        
+
         public static Random Random = new Random();
         int index = -1;
         public FormUser()
@@ -30,9 +30,13 @@ namespace WinFormsApp1
             string userName, passWord;
             userName = txtTaiKhoan.Text;
             passWord = txtMatKhau.Text;
-            ListUser.Instance.ListAccountUsers.Add(new User(userName, passWord));
+            
             if (MessageBox.Show("Ban co chac chan muon them tai khoan?", "Xac nhan them", MessageBoxButtons.OKCancel) != DialogResult.Cancel)
+            {
+                ListUser.Instance.ListAccountUsers.Add(new User(userName, passWord));
                 loadListUser();
+            }    
+                
         }
 
         private void FormUser_Load(object sender, EventArgs e)
@@ -51,19 +55,24 @@ namespace WinFormsApp1
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if(index<0)
+            if (index < 0)
             {
                 MessageBox.Show("Vui long chon 1 ban ghi!", "Thong bao", MessageBoxButtons.OK);
             }
-            string passWord;
-
-            passWord = Random.Next(1000, 10000000).ToString();
-            ListUser.Instance.ListAccountUsers[index].Password = passWord;
-            if (MessageBox.Show("Ban co chac chan muon sua tai khoan?", "Xac nhan sua", MessageBoxButtons.OKCancel) != DialogResult.Cancel)
+            else
             {
-                txtMatKhau.Text = passWord;
-                loadListUser();
+                string passWord;
+
+                passWord = Random.Next(1000, 10000000).ToString();
+
+                if (MessageBox.Show("Ban co chac chan muon sua tai khoan?", "Xac nhan sua", MessageBoxButtons.OKCancel) != DialogResult.Cancel)
+                {
+                    ListUser.Instance.ListAccountUsers[index].Password = passWord;
+                    txtMatKhau.Text = passWord;
+                    loadListUser();
+                }
             }
+            
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -72,17 +81,23 @@ namespace WinFormsApp1
             {
                 MessageBox.Show("Vui long chon 1 ban ghi!", "Thong bao", MessageBoxButtons.OK);
             }
-            ListUser.Instance.ListAccountUsers.RemoveAt(index);
-            if (MessageBox.Show("Ban co chac chan muon xoa tai khoan?", "Xac nhan xoa", MessageBoxButtons.OKCancel) != DialogResult.Cancel)
+            else
             {
+                ListUser.Instance.ListAccountUsers.RemoveAt(index);
+                if (MessageBox.Show("Ban co chac chan muon xoa tai khoan?", "Xac nhan xoa", MessageBoxButtons.OKCancel) != DialogResult.Cancel)
+                {
 
-                loadListUser();
+                    loadListUser();
+                }
             }
+            
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
+        
     }
 }

@@ -100,6 +100,7 @@
             btnQLYNhanVien.TabIndex = 6;
             btnQLYNhanVien.Text = "Quản lý hồ sơ nhân viên";
             btnQLYNhanVien.UseVisualStyleBackColor = true;
+            btnQLYNhanVien.Click += btnQLYNhanVien_Click;
             // 
             // btnLuong
             // 
